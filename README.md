@@ -2,7 +2,7 @@
 <img width="2252" height="1783" alt="KakaoTalk_20261127_153242257" src="https://github.com/user-attachments/assets/76bd3cca-2c24-4aca-a1b7-b6fadfe18d9c" />
 
 # PMSM-BLDC_FOC_Field_Oriented_Control_driver
-Development of FOC Motor Control Algorithms
+Project for FOC algorithm and hardware development
 
 
 ## 1. Overview
@@ -31,6 +31,14 @@ To achieve precise FOC control, the following functions were implemented:
 ### 2.1 3-phase BLDC/PMSM FOC
 
 <br>- This method employs Field-Oriented Control (FOC), a technique for controlling a motor by transforming its phase currents into d-axis and q-axis currents referenced to the rotor. The three-phase currents (Ia, Ib, Ic) measured from the motor are converted into d-q axis currents (Id, Iq) using the electrical angle (θ). Each current is compared against a reference value, and a PI current controller is used to generate voltage command values ​​(Vd, Vq). Subsequently, these d-q axis voltages are converted back into three-phase voltages, and Space Vector Pulse Width Modulation (SVPWM) is applied to generate the inverter switching signals required to drive the Permanent Magnet Synchronous Motor (PMSM).
+
+<br>- Furthermore, this control scheme is designed with a sequence of position, velocity, and current loops—a configuration known as a triple-cascade structure.
+
+1. The position controller generates a velocity command based on the difference between the target position and the current position.
+2. The velocity controller uses this velocity command to generate current commands for the d- and q-axes.
+3. The current controller converts these current commands into voltage commands, which are then applied to the inverse dq-transformation equations.
+
+Following the inverse transformation, an SVPWM (Space Vector Pulse Width Modulation) process is used to generate the pole voltage commands to be applied to the inverter.
 
 ### 2.2 Coordinate transformation technology
 
@@ -69,9 +77,18 @@ The control board was designed using KiCad, and the circuit incorporates the fol
 7. 3-Phase Inverter
 8. Current Sensing
 
-<br><img width="1099" height="777" alt="KakaoTalk_20261127_153242257_05" src="https://github.com/user-attachments/assets/a5834460-09ba-4758-8fae-c2c0de4e5afd" />
+**<br>-3D_MODEL**
+<img width="1099" height="777" alt="KakaoTalk_20261127_153242257_05" src="https://github.com/user-attachments/assets/a5834460-09ba-4758-8fae-c2c0de4e5afd" />
 
+**<br>-Artwork**
 <img width="773" height="625" alt="KakaoTalk_20261127_153242257_06" src="https://github.com/user-attachments/assets/72a7de1c-5803-4d62-a909-3ec4b2adf78a" />
+
+**<br>-schematic**
+<img width="816" height="560" alt="image" src="https://github.com/user-attachments/assets/3fb58d19-41f4-4eb4-9a33-21692131a041" />
+
+<img width="809" height="662" alt="image" src="https://github.com/user-attachments/assets/daa5c751-cee6-4675-aad2-9439b7531a9c" />
+
+<img width="805" height="473" alt="image" src="https://github.com/user-attachments/assets/a1c66394-8b99-47df-aa47-1e06cf47b229" />
 
 ## 4. Magnetic encoder
 - Encoder circuit used<br>
@@ -118,6 +135,17 @@ Clicking the image will take you to the Rozum Robotics source page. <br>
   - θₑ: Electrical angle used in FOC
   - Wrap: A calculation (wrap-around) that causes a value to cycle back to the beginning or end when it goes outside a specified range.
 
+## 5. Current Sensing
+
+In CMOS circuits, current sensing can be performed when the low-side MOSFET is turned on.
+
+To achieve this, the control system triggers an interrupt when the low-side PWM signal is active, allowing the current data to be read.
+
+The principle behind this current sensing involves using an ADC to measure the voltage drop across a shunt resistor. 
+The current value can then be calculated by dividing this voltage by the resistance of the shunt resistor.
+
+<img width="372" height="371" alt="image" src="https://github.com/user-attachments/assets/95b28acc-4b4f-4052-a19e-679536e0de17" />
+
 ## 6. Demonstration Video
 
 <br>- velocity & Position control
@@ -131,3 +159,6 @@ Clicking the image will take you to the Rozum Robotics source page. <br>
 ## 7. License
 
 ## 8. References
+  [1] https://www.unikeyic.com/media/datasheet/1a/ec/f21b/1a/a92c7469140eec31eee517c392211910.pdf
+  
+  [2] https://rozum.com/encoders-in-rdrive-servos/
