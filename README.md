@@ -35,13 +35,16 @@ To achieve precise FOC control, the following functions were implemented:
 ### 2.2 Coordinate transformation technology
 
 - Clarke transform (abc → αβ)
-  <img width="340" height="248" alt="image" src="https://github.com/user-attachments/assets/7abc9ae6-f618-4488-b7e1-ef70ff735a8f" />
+
+<img width="340" height="248" alt="image" src="https://github.com/user-attachments/assets/7abc9ae6-f618-4488-b7e1-ef70ff735a8f" />
 
 - Park transform (αβ → dq)
-  <img width="215" height="148" alt="image" src="https://github.com/user-attachments/assets/83e38aa3-f63d-4973-a679-5ecc1c60954b" />
+
+<img width="215" height="148" alt="image" src="https://github.com/user-attachments/assets/83e38aa3-f63d-4973-a679-5ecc1c60954b" />
 
 - inverse transform (dq → αβ → abc)
-  <img width="192" height="246" alt="image" src="https://github.com/user-attachments/assets/b94578e3-4c44-4bed-bd30-9f5c47b1a0ca" />
+
+<img width="192" height="246" alt="image" src="https://github.com/user-attachments/assets/b94578e3-4c44-4bed-bd30-9f5c47b1a0ca" />
 
   
 
