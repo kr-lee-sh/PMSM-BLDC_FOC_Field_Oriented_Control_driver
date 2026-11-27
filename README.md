@@ -26,29 +26,28 @@ To achieve precise FOC control, the following functions were implemented:
 
 ## 2. System Architecture
 
-<img width="815" height="454" alt="Image" src="https://github.com/user-attachments/assets/13b7e828-e8c0-43e2-875e-7c0ae10ffcc6" />
+<img width="677" height="217" alt="KakaoTalk_20261127_153242257_04" src="https://github.com/user-attachments/assets/2d5c914d-9e3e-4f5e-8fde-fb704872bbf7" />
 
-The configuration for controlling the QDD actuator is as follows:
+### 2.1 3-phase BLDC/PMSM FOC
 
-1. It receives commands to be executed from an external device via the interface.
-- Communication utilizes the RS485 standard, which ensures reliable operation even in the presence of external noise; data transmission distances of up to 1,200 meters are achievable when a terminal resistor is installed.
+- This method employs Field-Oriented Control (FOC), a technique for controlling a motor by transforming its phase currents into d-axis and q-axis currents referenced to the rotor. The three-phase currents (Ia, Ib, Ic) measured from the motor are converted into d-q axis currents (Id, Iq) using the electrical angle (θ). Each current is compared against a reference value, and a PI current controller is used to generate voltage command values ​​(Vd, Vq). Subsequently, these d-q axis voltages are converted back into three-phase voltages, and Space Vector Pulse Width Modulation (SVPWM) is applied to generate the inverter switching signals required to drive the Permanent Magnet Synchronous Motor (PMSM).
 
-2. The MCU interprets the received data and executes the corresponding commands.
-- Critical data can be stored in the EEPROM for semi-permanent retention.
+### 2.2 Coordinate transformation technology
 
-3. The MCU sends drive commands to the inverter in the form of SVPWM signals.
-- SVPWM is an efficient PWM control method designed to control motors using three-phase inverters.
-- An NTC thermistor is installed near the inverter's MOSFETs, allowing the MCU to monitor MOSFET temperatures in real time; this feature enables system shutdown in the event of overheating.
+- Clarke transform (abc → αβ)
+  <img width="340" height="248" alt="image" src="https://github.com/user-attachments/assets/7abc9ae6-f618-4488-b7e1-ef70ff735a8f" />
 
-4. Since the actuator is equipped with a reduction gear, the position of the motor rotor does not align with the position of the actual output shaft.
-- To address this, encoders are installed on both the motor and the output shaft to transmit their respective positions to the MCU in real time.
-- The output shaft encoder is used to determine the position upon initial startup.
-The motor shaft encoder is subsequently used to drive the motor via FOC control.
+- Park transform (αβ → dq)
+  <img width="215" height="148" alt="image" src="https://github.com/user-attachments/assets/83e38aa3-f63d-4973-a679-5ecc1c60954b" />
+
+- inverse transform (dq → αβ → abc)
+  <img width="192" height="246" alt="image" src="https://github.com/user-attachments/assets/b94578e3-4c44-4bed-bd30-9f5c47b1a0ca" />
+
+  
 
 ## 4. Main Features
 
-### 4.1 3-phase BLDC/PMSM FOC
-<img width="1163" height="341" alt="Image" src="https://github.com/user-attachments/assets/eca35c09-0e9a-4c69-b991-978b8e5a7e85" />
+
 
 - This method employs Field Oriented Control (FOC), which controls the motor by transforming phase currents into d-axis and q-axis currents referenced to the rotor. The three-phase currents (Ia, Ib, Ic) measured from the motor are converted into d-q axis currents (Id, Iq) using the electrical angle (theta). Each current is compared against a reference value, and a PI current controller generates voltage commands (Vd, Vq). Subsequently, the d-q axis voltages are converted back into three-phase voltages, and PWM is used to generate inverter switching signals to drive the PMSM. Additionally, feed-forward compensation is applied to compensate for coupling components between the d-axis and q-axis.
 
