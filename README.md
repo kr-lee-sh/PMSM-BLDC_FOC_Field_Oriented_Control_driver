@@ -42,7 +42,7 @@ Following the inverse transformation, an SVPWM (Space Vector Pulse Width Modulat
 
 ### 2.2 Coordinate transformation technology
 
-<br>**- Clarke transform (abc → αβ)**
+**- Clarke transform (abc → αβ)**
 
 <img width="340" height="248" alt="image" src="https://github.com/user-attachments/assets/7abc9ae6-f618-4488-b7e1-ef70ff735a8f" />
 
@@ -99,7 +99,7 @@ The control board was designed using KiCad, and the circuit incorporates the fol
 <a href="https://www.unikeyic.com/media/datasheet/1a/ec/f21b/1a/a92c7469140eec31eee517c392211910.pdf" target="_blank">
   <img width="465" height="565" alt="Image" src="https://github.com/user-attachments/assets/64a9e644-da99-4426-9154-952752612587" /> 
 </a> <br>
-Click the image to go to the AS5047P datasheet page.
+- Click the image to go to the AS5047P datasheet page.
 
 
 <br>- The on-axis configuration measures the angle by aligning the centers of the magnet and the sensor with the axis of rotation, allowing for relatively simple measurement of the rotor's position.
@@ -107,7 +107,7 @@ Click the image to go to the AS5047P datasheet page.
 <a href="https://rozum.com/encoders-in-rdrive-servos/" target="_blank">
   <img width="800" height="500" alt="Image" src="https://github.com/user-attachments/assets/429b0628-dfb7-429d-a054-42781f0b411b" />
 </a> <br>
-Clicking the image will take you to the Rozum Robotics source page. <br>
+- Clicking the image will take you to the Rozum Robotics source page. <br>
 
 <br> - In this setup, using a diametrically magnetized magnet causes the direction of the magnetic field detected by the sensor to rotate along with the magnet, enabling the calculation of the rotation angle.
 
