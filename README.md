@@ -38,9 +38,11 @@ To achieve precise FOC control, the following functions were implemented:
 
 <img width="340" height="248" alt="image" src="https://github.com/user-attachments/assets/7abc9ae6-f618-4488-b7e1-ef70ff735a8f" />
 
+
 - Park transform (αβ → dq)
 
 <img width="215" height="148" alt="image" src="https://github.com/user-attachments/assets/83e38aa3-f63d-4973-a679-5ecc1c60954b" />
+
 
 - inverse transform (dq → αβ → abc)
 
