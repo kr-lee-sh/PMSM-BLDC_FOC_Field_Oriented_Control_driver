@@ -7,25 +7,24 @@ Development of FOC Motor Control Algorithms
 
 ## 1. Overview
 
-This project focuses on the design and development
-of a custom FOC motor controller for a QDD actuator.
-
-The main focus of this project is the electrical
-and control system rather than the mechanical design
-of the actuator.
-
-The mechanical system is documented primarily in
-the following areas:
-
-- Reduction mechanism
-- Output shaft position sensing
+<img width="642" height="357" alt="KakaoTalk_20261127_153242257_03" src="https://github.com/user-attachments/assets/78b27d4b-4712-49ad-996d-a125fbc85bf9" />
 
 
-## 2. Exploded View
+This project was developed to study Field-Oriented Control (FOC), a core technology in the development of QDD (Quasi-Direct Drive) actuators.
 
-<img width="2137" height="1345" alt="Image" src="https://github.com/user-attachments/assets/e5b00187-19f0-410f-8a91-6aa565b95e28" />
+FOC is an algorithm that controls a motor by decoupling the magnetic flux axis from the torque axis; it generates three-phase voltages such that the torque axis always leads the magnetic flux axis by 90º.
 
-## 3. System Architecture
+※ A commercially available FOC driver was used, and the project involved studying the underlying principles by following the hardware design.
+
+To achieve precise FOC control, the following functions were implemented:
+
+- Rotor position sensing using an encoder
+- Generation of PWM waveforms for inverter operation
+- VDC (DC-link voltage) sensing for PWM waveform generation
+- Current sensing via shunt resistors using an ADC
+- MOSFET temperature sensing
+
+## 2. System Architecture
 
 <img width="815" height="454" alt="Image" src="https://github.com/user-attachments/assets/13b7e828-e8c0-43e2-875e-7c0ae10ffcc6" />
 
